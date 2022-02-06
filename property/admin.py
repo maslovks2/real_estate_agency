@@ -21,3 +21,4 @@ class ComplatintAdmin(admin.ModelAdmin):
 @admin.register(Owner)
 class OwnerAdmin(admin.ModelAdmin):
     raw_id_fields = ("flats",)
+    list_display = ("name", "owner_pure_phone")
