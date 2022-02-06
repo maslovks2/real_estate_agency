@@ -83,6 +83,10 @@ class Complaint(models.Model):
         verbose_name="Квартира, на которую пожаловались"
     )
 
+    def __str__(self):
+        text_length_for_preview = 20
+        return self.text[:text_length_for_preview]
+
 
 class Owner(models.Model):
     owner = models.CharField('ФИО владельца', max_length=200)
@@ -95,3 +99,6 @@ class Owner(models.Model):
         related_name="owners",
         verbose_name="Квартиры в собственности"
     )
+
+    def __str__(self):
+        return self.owner
