@@ -1,7 +1,5 @@
-from csv import list_dialects
 from django.contrib import admin
-
-from .models import Flat, Complaint
+from .models import Flat, Complaint, Owner
 
 
 @admin.register(Flat)
@@ -18,3 +16,8 @@ class FlatAdmin(admin.ModelAdmin):
 class ComplatintAdmin(admin.ModelAdmin):
     fields = ("user", "flat", "text")
     raw_id_fields = ("flat", "user")
+
+
+@admin.register(Owner)
+class OwnerAdmin(admin.ModelAdmin):
+    raw_id_fields = ("flats",)
