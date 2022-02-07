@@ -10,9 +10,16 @@ def transfer_owners_from_flats_to_owners(apps, schema_editor):
     for flat in Flat.objects.all():
         Owner.objects.get_or_create(
             name=flat.owner,
-            owner_pure_phone=flat.owner_pure_phone,
-            owners_phonenumber=flat.owners_phonenumber
+            defaults={
+                'owner_pure_phone': flat.owner_pure_phone,
+                'owners_phonenumber': flat.owners_phonenumber,
+            }
         )
+
+
+def delete_owners(apps, schema_editor):
+    Owner = apps.get_model('property', 'Owner')
+    Owner.objects.all().delete()
 
 
 class Migration(migrations.Migration):
@@ -22,5 +29,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(transfer_owners_from_flats_to_owners)
+        migrations.RunPython(transfer_owners_from_flats_to_owners, delete_owners)
     ]
