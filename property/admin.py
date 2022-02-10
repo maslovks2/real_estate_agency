@@ -22,8 +22,8 @@ class FlatAdmin(admin.ModelAdmin):
 
 @admin.register(Complaint)
 class ComplatintAdmin(admin.ModelAdmin):
-    fields = ("user", "flat", "text")
-    raw_id_fields = ("flat", "user")
+    fields = ("author", "flat", "text")
+    raw_id_fields = ("flat", "author")
 
 
 @admin.register(Owner)
